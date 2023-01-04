@@ -24,7 +24,7 @@ class Vendor(models.Model):
 
 class Item(models.Model):
     item_id = models.CharField(primary_key=True, max_length=10)
-    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
+    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
     item_name = models.CharField(max_length=40, null=True)
     item_quantity = models.PositiveIntegerField(default=None, null=True)
     item_price = models.FloatField(default=None, null=True)
