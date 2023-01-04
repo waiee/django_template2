@@ -26,7 +26,7 @@ class Item(models.Model):
     item_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=40)
-    item_quantity = models.PositiveIntegerField()
+    item_quantity = models.PositiveIntegerField(default=None)
     item_price = models.FloatField(default=None)
 
     def __str__(self):
