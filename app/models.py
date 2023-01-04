@@ -8,16 +8,16 @@ from django.contrib.auth.models import User
 #sharing entity
 class Staff(models.Model):
     staff_id = models.CharField(primary_key=True, max_length=10)
-    staff_password = models.CharField(max_length=5)
+    staff_password = models.CharField(max_length=5, null=True)
 
     def __str__(self):
         return str(self.staff_id)
 
 class Vendor(models.Model):
     vendor_id = models.CharField(primary_key=True, max_length=10)
-    vendor_name = models.CharField(max_length=20)
-    vendor_address = models.CharField(max_length=100)
-    vendor_contact = models.BigIntegerField()
+    vendor_name = models.CharField(max_length=20, null=True)
+    vendor_address = models.CharField(max_length=100, null=True)
+    vendor_contact = models.BigIntegerField(null=True)
 
     def __str__(self):
         return str(self.vendor_id)
@@ -25,7 +25,7 @@ class Vendor(models.Model):
 class Item(models.Model):
     item_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
-    item_name = models.CharField(max_length=40)
+    item_name = models.CharField(max_length=40, null=True)
     item_quantity = models.PositiveIntegerField(default=None, null=True)
     item_price = models.FloatField(default=None, null=True)
     item_description = models.TextField(blank=True, default=None, null=True)
@@ -36,7 +36,7 @@ class Item(models.Model):
 class Product(models.Model):
     product_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=40)
+    product_name = models.CharField(max_length=40, null=True)
     product_quantity = models.PositiveIntegerField(null=True)
     product_price = models.FloatField(default=None, null=True)
 
@@ -54,7 +54,7 @@ class Quotation(models.Model):
     valid_until = models.DateField()
     # created_at = models.DateTimeField(auto_now_add=True)
     # updated_at = models.DateTimeField(auto_now=True)
-    quantity_provided = models.PositiveIntegerField()
+    quantity_provided = models.PositiveIntegerField(null=True)
     quotation_status = models.CharField(max_length=20)
 
     def __str__(self):
