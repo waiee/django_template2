@@ -29,6 +29,8 @@ class Item(models.Model):
     item_quantity = models.PositiveIntegerField(default=None)
     item_price = models.FloatField(default=None)
 
+    item_description = models.TextField(null=True,default=None, blank=True)
+
     def __str__(self):
         return str(self.item_id)
 

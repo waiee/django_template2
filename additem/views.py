@@ -21,8 +21,7 @@ def additemconfirmation(request):
     newitem_name= request.POST['item_name']
     newitem_description = request.POST['item_description']
 
-    newitem = Item(item_id = newitem_id,item_name = newitem_name, item_description =
-        newitem_description)
+    newitem = Item(item_id = newitem_id,item_name = newitem_name, item_description =newitem_description)
     newitem.save()
 
     context = {
