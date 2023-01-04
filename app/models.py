@@ -26,7 +26,7 @@ class Item(models.Model):
     item_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=40)
-    item_quantity = models.PositiveIntegerField(default=None)
+    item_quantity = models.PositiveIntegerField(default=None, null=True)
     item_price = models.FloatField(default=None, null=True)
     item_description = models.TextField(blank=True, default=None, null=True)
     def __str__(self):
@@ -37,7 +37,7 @@ class Product(models.Model):
     product_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=40)
-    product_quantity = models.PositiveIntegerField()
+    product_quantity = models.PositiveIntegerField(null=True)
     product_price = models.FloatField(default=None, null=True)
 
     def __str__(self):
