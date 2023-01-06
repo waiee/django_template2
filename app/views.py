@@ -50,8 +50,8 @@ def about(request):
 
 @login_required
 def menu(request):
-    check_employee = request.user.groups.filter(name='employee').exists()
-    check_manager = request.user.groups.filter(name='manager').exists()
+    check_employee = request.user.groups.filter(name='Employee').exists()
+    check_manager = request.user.groups.filter(name='Manager').exists()
 
     context = {
             'title':'Main Menu',
