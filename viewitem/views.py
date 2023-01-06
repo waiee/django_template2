@@ -1,9 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+from datetime import datetime
 from django.shortcuts import render
-from .models import Item
+from app.models import Item
 
+@login_required
 def choose_item(request):
     # Get a list of all the items in the database
     items = Item.objects.all()
