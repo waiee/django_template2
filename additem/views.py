@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from app.models import Item
+from app.models import Item, Vendor
 
 # Create your views here.
-
 @login_required
 def additemform(request):
     context = {
@@ -25,7 +24,7 @@ def additemconfirmation(request):
     newitem_price = request.POST['item_price']
 
 
-    newitem = Item(item_id = newitem_id, vendor_id=newvendor_id, item_name = newitem_name, item_description =newitem_description, item_quantity = newitem_quantity, item_price = newitem_price)
+    newitem = Item(item_id = newitem_id, vendor_id = newvendor_id, item_name = newitem_name, item_description =newitem_description, item_quantity = newitem_quantity, item_price = newitem_price)
     newitem.save()
 
     context = {
