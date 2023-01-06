@@ -51,10 +51,12 @@ def about(request):
 @login_required
 def menu(request):
     check_employee = request.user.groups.filter(name='employee').exists()
+    check_manager = request.user.groups.filter(name='manager').exists()
 
     context = {
             'title':'Main Menu',
             'is_employee': check_employee,
+            'is_manager': check_manager,
             'year':datetime.now().year,
         }
     context['user'] = request.user
