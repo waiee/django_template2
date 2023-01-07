@@ -14,5 +14,5 @@ def choose_item(request):
 
 def view_item(request, item_id):
     # Get the item with the specified id
-    item = Item.objects.get(id=item_id)
+    item = Item.objects.get(pk=item_id)
     return render(request, 'viewitem/view_item.html', {'item': item})
