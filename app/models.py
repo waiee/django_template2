@@ -27,7 +27,7 @@ class Item(models.Model):
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
     item_name = models.CharField(max_length=40, null=True)
     item_quantity = models.PositiveIntegerField(default=None, null=True)
-    item_price = models.FloatField(default=None, null=True)
+    item_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     item_description = models.TextField(blank=True, default=None, null=True)
     def __str__(self):
         return str(self.item_id)
@@ -38,7 +38,7 @@ class Product(models.Model):
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=40, null=True)
     product_quantity = models.PositiveIntegerField(null=True)
-    product_price = models.FloatField(default=None, null=True)
+    product_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
 
     def __str__(self):
         return str(self.product_id)
@@ -49,8 +49,8 @@ class Quotation(models.Model):
     product_id = models.ForeignKey(Product,default=None, on_delete=models.CASCADE)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=40)
-    product_price = models.FloatField(default=None, null=True)
-    total_price = models.FloatField(default=None, null=True)
+    product_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    total_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     valid_until = models.DateField()
     # created_at = models.DateTimeField(auto_now_add=True)
     # updated_at = models.DateTimeField(auto_now=True)
@@ -68,8 +68,8 @@ class PurchaseOrder(models.Model):
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=40)
     quantity_provided = models.PositiveIntegerField()
-    item_price = models.FloatField(default=None, null=True)
-    total_price = models.FloatField(default=None, null=True)
+    item_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    total_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     quantity_needed = models.PositiveIntegerField()
     po_status = models.CharField(max_length=20)
 
