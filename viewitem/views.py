@@ -28,8 +28,11 @@ def view_item(request):
 
     item = Item.objects.all().values()
     context = {
+    'title': 'Choose Item',
+    'year': datetime.now().year,
     'data': item,
     }
+    context['user'] = request.user
 
     # return HttpResponse(template.render(context, request))
     return render(request, 'viewitem/view_item.html', context)
