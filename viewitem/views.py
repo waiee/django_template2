@@ -18,7 +18,7 @@ def choose_item(request):
     items = Item.objects.all()
     return render(request, 'viewitem/choose_item.html', {'item': items}, context)
 
-def view_item(request, item_id):
+def view_item(request):
     # Get the item with the specified id
-    item = Item.objects.get(id=item_id)
+    item = Item.objects.all()
     return render(request, 'viewitem/view_item.html', {'item': item})
