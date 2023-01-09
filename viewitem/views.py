@@ -15,20 +15,19 @@ def choose_item(request):
     item = Item.objects.all().values()
 
     context = {
-    'title': 'View Item',
     'year': datetime.now().year,
     'data': item,
     }
     context['user'] = request.user
-
+    
     return render(request, 'viewitem/choose_item.html', context)
+    
 
 def view_item(request):
     # Get the item with the specified id
 
     item = Item.objects.all().values()
     context = {
-    'title': 'Choose Item',
     'year': datetime.now().year,
     'data': item,
     }

@@ -2,13 +2,15 @@
 
 {% block content %}
 
-<div style="padding-top: 50px;">
+
+<div class="chooseitem" style="padding-top: 10px;">
     <div>
+        <hi><p><strong>View Item Page</strong></p></hi>  
         <form action="{% url 'view_item' %}" method="get">
             <label for="item_id">Choose an item:</label>
             <select name="item_id">
                 {% for item in data %}
-                <option value="{{ item.id }}">{{ item.id }}</option>
+                <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
             </select>
     </div>
