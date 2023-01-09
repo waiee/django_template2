@@ -20,6 +20,11 @@ def choose_item(request):
     }
     context['user'] = request.user
     
+    if request.method == "POST":
+        item = Item.objects.all().values()
+        item_selected = Item.objects.get(pk=item.id)
+        return render(request, 'viewitem/choose_item.html', context)
+
     return render(request, 'viewitem/choose_item.html', context)
     
 
