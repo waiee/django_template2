@@ -20,5 +20,13 @@ def choose_item(request):
 
 def view_item(request):
     # Get the item with the specified id
-    item = Item.objects.all()
-    return render(request, 'viewitem/view_item.html', {'item': item})
+    context = {
+
+        'item_id': item_id,
+        'item_name': item_name,
+        'item_description': item_description,
+        'vendor_id': vendor,
+        'item_quantity': item_quantity,
+        'item_price': item_price,
+    }
+    return render(request, 'viewitem/view_item.html', context)
