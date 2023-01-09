@@ -13,18 +13,12 @@ def choose_item(request):
 
     # Get a list of all the items in the database
     item = Item.objects.all().values()
-
-    context = {
-    'year': datetime.now().year,
-    'data': item,
-    }
-    context['user'] = request.user
     
-    if request.method == "POST":
-        item = Item.objects.all().values()
-        item_selected = Item.objects.get(pk=item.id)
-        return render(request, 'viewitem/choose_item.html', context)
-
+    context = {
+        'year': datetime.now().year,
+        'data': item,
+        }
+    context['user'] = request.user
     return render(request, 'viewitem/choose_item.html', context)
     
 
