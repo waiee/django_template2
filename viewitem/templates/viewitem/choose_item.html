@@ -7,7 +7,7 @@
         <form action="{% url 'view_item' %}" method="get">
             <label for="item_id">Choose an item:</label>
             <select name="item_id">
-                {% for item in items %}
+                {% for item in data %}
                 <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
             </select>

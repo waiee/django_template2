@@ -27,7 +27,6 @@ def view_item(request):
     # Get the item with the specified id
 
     item = Item.objects.all().values()
-
     context = {
     'data': item,
     }
