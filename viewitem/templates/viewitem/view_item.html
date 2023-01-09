@@ -1,12 +1,15 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
-<p>Item ID: {{ item_id }}</p>
-<p>Vendor ID: {{ vendor_id }}</p>
-<p>Item Name: {{ item_name }}</p>
-<p>Item Description: {{ item_description }}</p>
-<p>Item Quantity: {{ item_quantity }}</p>
-<p>Item Price: RM{{ item_price }}</p>
+<br>
+<div style="padding-top: 50px;">
+<table>
+    {% for x in data %}
+    <tr>
+      <td>Item ID: {{ x.item_id }}</td>
+    </tr>
+  {% endfor %}
+</table>
+</div>
 
 {% endblock %}

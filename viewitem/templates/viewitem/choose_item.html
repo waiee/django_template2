@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<form action="{% url 'view_item' %}" method="get">
-    <label for="item_id">Choose an item:</label>
-    <select name="item_id">
-        {% for item in items %}
-        <option value="{{ item.id }}">{{ item.name }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">View item</button>
-</form>
-
+<div style="padding-top: 50px;">
+    <div>
+        <form action="{% url 'view_item' %}" method="get">
+            <label for="item_id">Choose an item:</label>
+            <select name="item_id">
+                {% for item in items %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+    </div>
+        <button type="submit">View item</button>
+    </form>
+    
+</div>
 {% endblock %}
