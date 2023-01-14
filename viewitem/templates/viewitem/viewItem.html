@@ -54,12 +54,12 @@ tr > td:first-child {
  }
 </style>
 <div>
-    <h2>View Purchase Order List</h2>
+    <h2 style="text-align: center;">Purchase Order List</h2>
     <br/>
   <form class="margintop" action = 'searchItem' method='POST'>
     {% csrf_token %} 
     <input type="text" placeholder="Search here..." aria-label="Search here.." name = "searched")>
-    <button class="btn btn-outline-secondary">Search</button>
+    <button class="btn btn-info">Search</button>
     </form>
     <br/>
 
@@ -67,18 +67,20 @@ tr > td:first-child {
 <table>
 
 <thead>
+    <th>No.</th>
     <th>Purchase Order ID</th>
-    <th>Item ID</th>
-    <th>Item Price</th>
+    <th>Staff ID</th>
     <th>Status</th>
+    <th>Selection</th>
 </thead>
 {% for po in po_list %}
     {% if po.item_price >= 1 %}
     <tr>
+        <td>{{po}}</td>
         <td>{{po.po_id}}</td>
-        <td>{{po.item_id}}</td>
-        <td>{{po.item_price}}</td>
+        <td>{{po.staff_id}}</td>
         <td>{{po.po_status}}</td>
+        <td>{{"Select"}}</td>
     </tr>
     {% endif %}
 {% endfor %}
@@ -86,7 +88,7 @@ tr > td:first-child {
 
 </div>
 </table>
-
+<br>
 <form class="margintop" action='backtoHome' method='GET'>
   <button type="submit" class="btn btn-info">Back</button><br />
 </form>

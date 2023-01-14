@@ -54,12 +54,12 @@ tr > td:first-child {
  }
 </style>
 <div>
-    <h2>View Item</h2>
+    <h2 style="text-align: center;" >Purchase Order Details</h2>
     <br/>
   <form class="margintop" action = 'searchItem' method='POST'>
     {% csrf_token %} 
     <input type="text" placeholder="Search here..." aria-label="Search here.." name = "searched")>
-    <button class="btn btn-outline-secondary">Search</button>
+    <button class="btn btn-info">Search</button>
     </form>
 
 <table>
