@@ -3,9 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.models import Item
-from django.http import HttpResponse
+from django.http import HttpRequest
 from django.template import loader
 
 @login_required
@@ -36,3 +36,18 @@ def viewItem(request):
             'item_list' : item_list,
         }
     )
+
+def backtoHome(request):
+    """Renders the home page."""
+    assert isinstance(request, HttpRequest)
+    if request.user.is_authenticated:
+        return(redirect('/viewItem'))
+    else:
+        return render(
+            request,
+            'additem/viewItem.html',
+            {
+                'title':'View Item',
+                'year': datetime.now().year,
+            }
+        )
