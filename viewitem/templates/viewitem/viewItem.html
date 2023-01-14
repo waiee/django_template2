@@ -54,7 +54,7 @@ tr > td:first-child {
  }
 </style>
 <div>
-    <h2>View Selected Purchase Requisition</h2>
+    <h2>View Item List</h2>
     <br/>
   <form class="margintop" action = 'searchItem' method='POST'>
     {% csrf_token %} 
@@ -73,7 +73,7 @@ tr > td:first-child {
     <th>Item Quantity</th>
 </thead>
 {% for item in item_list %}
-    {% if pr.formStatus == 'Approved'%}
+    {% if item.item_price >= 1 %}
     <tr>
         <td>{{item.item_id}}</td>
         <td>{{item.item_name}}</td>
