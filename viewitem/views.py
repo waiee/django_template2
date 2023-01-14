@@ -12,7 +12,7 @@ from django.template import loader
 def searchItem(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        po_id = PurchaseOrder.objects.filter(po_id__contains=searched)
+        po_id = PurchaseOrder.objects.get(po_id__contains=searched)
         return render(
             request,
             'viewitem/searchItem.html',

@@ -2,12 +2,32 @@
 
 {% block content %}
 
+<style>
+.button{
+        padding : 15px 32px;
+        margin : 5px 2px;
+        display: inline-block;
+        width: 250px;
+        border: none;
+        border-radius: 12px;
+        background-color:#00ADB5;
+        color: white;
+        
+
+}
+
+.h2{
+    text-align: center;
+}
+
+</style>
+
 <div>
     <br />
     {% if is_employee %}
-         <h2>Employee Menu</h2>
+         <h2 class="h2">Employee Menu</h2>
     {% elif is_manager %}
-         <h2>Manager Menu</h2>
+         <h2 class="h2">Manager Menu</h2>
     {% endif %}
 
     <br />
@@ -28,13 +48,13 @@
     {% elif is_manager %}            
         <tr><td>
     <form class="margintop" action='viewItem' method='GET'>
-        <button type="submit" class="btn btn-info">View Item</button><br />
+        <button type="submit" class="button">View Item</button><br />
     </form>
         </td></tr>
             
         <tr><td>
-    <form class="margintop" action='module4' method='GET'>
-        <button type="submit" class="btn btn-outline-info waves-effect">Module 4</button><br />
+    <form class="margintop" action='viewItem' method='GET'>
+        <button type="submit" class="button">Approve/Reject Purchase Order</button><br />
     </form>
         </td></tr>
                       
