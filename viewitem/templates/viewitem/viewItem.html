@@ -62,10 +62,10 @@ tr > td:first-child {
     <button class="btn btn-info">Search</button>
     </form>
     <br/>
+</div>
 
-
+<div>
 <table>
-
 <thead>
     <th>No.</th>
     <th>Purchase Order ID</th>
@@ -73,21 +73,26 @@ tr > td:first-child {
     <th>Status</th>
     <th>Selection</th>
 </thead>
+
 {% for po in po_list %}
-    {% if po.item_price >= 1 %}
+    {% if po.item_status == 'Pending' %}
     <tr>
         <td>{{po}}</td>
         <td>{{po.po_id}}</td>
         <td>{{po.staff_id}}</td>
         <td>{{po.po_status}}</td>
-        <td>{{"Select"}}</td>
+        <td>
+            <form class="margintop" action='viewItem' method='GET'>
+                <button type="submit" class="btn btn-info">Select</button><br />
+            </form>
+            
+        </td>
     </tr>
     {% endif %}
 {% endfor %}
-
-
-</div>
 </table>
+</div>
+
 <br>
 <form class="margintop" action='backtoHome' method='GET'>
   <button type="submit" class="btn btn-info">Back</button><br />
