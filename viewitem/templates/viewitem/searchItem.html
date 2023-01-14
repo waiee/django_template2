@@ -64,21 +64,21 @@ tr > td:first-child {
 
 <table>
 {% if searched %}
-    {% if item_id %}
+    {% if po_id %}
         <em>You searched for {{searched}}</em>
         <br/>
         <thead>
+            <th>Purchase Order ID</th>
             <th>Item ID</th>
-            <th>Item Name</th>
             <th>Item Price</th>
-            <th>Item Quantity</th>
+            <th>Status</th>
         </thead>
-            {%for id in item_id%}
+            {%for po in po_id%}
                 <tr>
-                    <td>{{id.item_id}}</td>
-                    <td>{{id.item_name}}</td>
-                    <td>{{id.item_price}}</td>
-                    <td>{{id.item_quantity}}</td>
+                    <td>{{po.po_id}}</td>
+                    <td>{{po.item_id}}</td>
+                    <td>{{po.item_price}}</td>
+                    <td>{{po.po_status}}</td>
                 </tr>
             {% endfor %}
         {% else %}
