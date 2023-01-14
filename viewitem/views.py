@@ -9,14 +9,18 @@ from django.http import HttpResponse
 from django.template import loader
 
 @login_required
-def viewItem(request):
-
-    # Get a list of all the items in the database
-    item = Item.objects.all().values()
-    
-    context = {
-        'year': datetime.now().year,
-        'data': item,
-        }
-    context['user'] = request.user
-    return render(request, 'viewitem/choose_item.html', context)
+def searchItem(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        item_id = Item.objects.filter(itemID__contains=searched)
+        return render(
+            request,
+            'app/searchItem.html',
+            {
+                'searched': searched,
+                'item_ID' : item_id,
+            }
+        )
+    else:
+        return render(request, 
+        'app/searchItem.html',{})
