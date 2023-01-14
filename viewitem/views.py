@@ -28,7 +28,8 @@ def searchItem(request):
 def selectItem(request):
     if request.method == "POST":
         selected = request.POST['selected']
-        po_id = PurchaseOrder.objects.filter(po_id__contains=selected)
+        po_id = PurchaseOrder.objects.all()
+
         return render(
             request,
             'viewitem/searchItem.html',
