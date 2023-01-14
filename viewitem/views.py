@@ -12,15 +12,27 @@ from django.template import loader
 def searchItem(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        item_id = Item.objects.filter(itemID__contains=searched)
+        item_id = Item.objects.filter(item_id__contains=searched)
         return render(
             request,
-            'app/searchItem.html',
+            'viewitem/searchItem.html',
             {
                 'searched': searched,
-                'item_ID' : item_id,
+                'item_id' : item_id,
             }
         )
     else:
         return render(request, 
-        'app/searchItem.html',{})
+        'viewitem/searchItem.html',{})
+
+def viewItem(request):
+    item_list = Item.objects.all()
+    return render(
+        request,
+        'viewitem/viewItem.html',
+        {
+            'title':'View Item',
+            'year':datetime.now().year,
+            'item_list' : item_list,
+        }
+    )
