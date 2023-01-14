@@ -11,13 +11,13 @@ from django.template import loader
 @login_required
 def searchItem(request):
     if request.method == "POST":
-        searched = request.POST['searched']
-        po_id = PurchaseOrder.objects.get(po_id__contains=searched)
+        # searched = request.POST['searched']
+        selected = request.POST['searched']
+        po_id = PurchaseOrder.objects.get(po_id__contains=selected)
         return render(
             request,
             'viewitem/searchItem.html',
             {
-                'searched': searched,
                 'po_id' : po_id,
             }
         )
