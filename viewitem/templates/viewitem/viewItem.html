@@ -65,13 +65,13 @@ tr > td:first-child {
 <div>
     <h2 style="text-align: center;">Purchase Order List</h2>
     <br/>
-  <!-- <form class="margintop" action = 'searchItem' method='POST'>
+  <form class="margintop" action = 'searchItem' method='POST'>
     {% csrf_token %} 
     <input type="text" placeholder="Search here..." aria-label="Search here.." name = "searched")>
     <button class="btn btn-info">Search</button>
     </form>
     <br/>
-</div> -->
+</div>
 
 <div>
 <table>
@@ -91,8 +91,9 @@ tr > td:first-child {
         <td>{{po.staff_id}}</td>
         <td>{{po.po_status}}</td>
         <td>
-            <form class="margintop" action='searchItem' method='GET'>
-                <button type="submit" value=po.po_id class="btn btn-info">Select</button><br />
+            <form class="margintop" action='selectItem' method='POST'>
+                {% csrf_token %} 
+                <button type="submit" value="po.po_id" name="selected" class="btn btn-info">Select</button><br />
             </form>
         </td>
     </tr>

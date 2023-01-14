@@ -43,4 +43,5 @@ urlpatterns = [
     re_path(r'^searchItem$', viewitem_views.searchItem, name='searchItem'),
     re_path(r'^viewItem$', viewitem_views.viewItem, name='viewItem'),
     re_path(r'^backtoHome$', viewitem_views.backtoHome, name='backtoHome'),
+    re_path(r'^selectItem$', viewitem_views.selectItem, name='selectItem'),
 ]

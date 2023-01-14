@@ -11,19 +11,36 @@ from django.template import loader
 @login_required
 def searchItem(request):
     if request.method == "POST":
-        # searched = request.POST['searched']
-        selected = request.POST['']
-        po_id = PurchaseOrder.objects.get(po_id__contains=selected)
+        searched = request.POST['searched']
+        po_id = PurchaseOrder.objects.filter(po_id__contains=searched)
         return render(
             request,
             'viewitem/searchItem.html',
             {
+                'searched': searched,
                 'po_id' : po_id,
             }
         )
     else:
         return render(request, 
         'viewitem/searchItem.html',{})
+
+def selectItem(request):
+    if request.method == "POST":
+        selected = request.POST['selected']
+        po_id = PurchaseOrder.objects.filter(po_id__contains=selected)
+        return render(
+            request,
+            'viewitem/searchItem.html',
+            {
+                'selected': selected,
+                'po_id' : po_id,
+            }
+        )
+    else:
+        return render(request, 
+        'viewitem/searchItem.html',{})
+
 
 def viewItem(request):
     po_list = PurchaseOrder.objects.all()
