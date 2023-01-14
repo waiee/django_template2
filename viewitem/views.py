@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 @login_required
-def choose_item(request):
+def viewItem(request):
 
     # Get a list of all the items in the database
     item = Item.objects.all().values()
@@ -20,17 +20,3 @@ def choose_item(request):
         }
     context['user'] = request.user
     return render(request, 'viewitem/choose_item.html', context)
-    
-
-def view_item(request):
-    # Get the item with the specified id
-
-    item = Item.objects.all().values()
-    context = {
-    'year': datetime.now().year,
-    'data': item,
-    }
-    context['user'] = request.user
-
-    # return HttpResponse(template.render(context, request))
-    return render(request, 'viewitem/view_item.html', context)
