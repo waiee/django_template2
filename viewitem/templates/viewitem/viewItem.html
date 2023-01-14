@@ -5,24 +5,33 @@
 
 <style>
  table, th,td {
-    padding:15px;
+    border:none;
+    border-collapse: collapse;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    text-align: center;
+    padding:10px;
 } 
 
 th {
-    background-color: #70A1FE;
+    background-color: #00ADB5;
     color: white;
+    padding:15px;
+
 
 }
 tr{
     border:1px solid;
-    border-color: #70A1FE;
+    border-color: white;
+    background-color: #393E46;
+    color: white;
 }
 tr > td {
-    min-width: 200px;
+    min-width: 240px;
     /* border: 1px solid black; */
 }
 tr > td:first-child {
-    min-width: 600px;
+    min-width: 240px;
 }
 
 .search{
@@ -56,13 +65,13 @@ tr > td:first-child {
 <div>
     <h2 style="text-align: center;">Purchase Order List</h2>
     <br/>
-  <form class="margintop" action = 'searchItem' method='POST'>
+  <!-- <form class="margintop" action = 'searchItem' method='POST'>
     {% csrf_token %} 
     <input type="text" placeholder="Search here..." aria-label="Search here.." name = "searched")>
     <button class="btn btn-info">Search</button>
     </form>
     <br/>
-</div>
+</div> -->
 
 <div>
 <table>
@@ -75,7 +84,7 @@ tr > td:first-child {
 </thead>
 
 {% for po in po_list %}
-    {% if po.item_status == 'Pending' %}
+    {% if po.po_status == 'Pending' %}
     <tr>
         <td>{{po}}</td>
         <td>{{po.po_id}}</td>
