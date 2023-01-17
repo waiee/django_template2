@@ -22,7 +22,7 @@ class Vendor(models.Model):
         return str(self.vendor_id)
 
 class Item(models.Model):
-    item_id = models.CharField(primary_key=True, maxlength=10)
+    item_id = models.CharField(primary_key=True, max_length=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
     item_name = models.CharField(max_length=40, null=True)
     item_quantity = models.PositiveIntegerField(default=None, null=True)
