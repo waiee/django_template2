@@ -18,17 +18,17 @@ class Vendor(models.Model):
     vendor_name = models.CharField(max_length=20, null=True)
     vendor_address = models.CharField(max_length=100, null=True)
     vendor_contact = models.BigIntegerField(null=True)
-
     def __str__(self):
-        return str(self.vendor_id)
+        return str(self.vendor_id)_
 
 class Item(models.Model):
-    item_id = models.CharField(primary_key=True, max_length=10)
+    item_id = models.CharField(primary_key=True, maxlength=10)
     vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
     item_name = models.CharField(max_length=40, null=True)
     item_quantity = models.PositiveIntegerField(default=None, null=True)
     item_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     item_description = models.TextField(blank=True, default=None, null=True)
+    
     def __str__(self):
         return str(self.item_id)
 
@@ -52,8 +52,6 @@ class Quotation(models.Model):
     product_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     total_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
     valid_until = models.DateField()
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
     quantity_provided = models.PositiveIntegerField(null=True)
     quotation_status = models.CharField(max_length=20)
 
