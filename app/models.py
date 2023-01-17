@@ -19,7 +19,7 @@ class Vendor(models.Model):
     vendor_address = models.CharField(max_length=100, null=True)
     vendor_contact = models.BigIntegerField(null=True)
     def __str__(self):
-        return str(self.vendor_id)_
+        return str(self.vendor_id)
 
 class Item(models.Model):
     item_id = models.CharField(primary_key=True, maxlength=10)
