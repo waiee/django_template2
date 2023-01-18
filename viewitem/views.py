@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.shortcuts import render, redirect
-from app.models import Item, PurchaseOrder
+from app.models import QuotationItem, PurchaseOrder
 from django.http import HttpRequest
 from django.template import loader
 

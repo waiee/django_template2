@@ -5,71 +5,68 @@ Definition of models.
 from django.db import models
 from django.contrib.auth.models import User
 
-#sharing entity
 class Staff(models.Model):
-    staff_id = models.CharField(primary_key=True, max_length=10)
-    staff_password = models.CharField(max_length=5, null=True)
+    staffID = models.CharField(primary_key=True, max_length=10)
+    password = models.CharField(max_length=5, null=True)
 
     def __str__(self):
         return str(self.staff_id)
 
 class Vendor(models.Model):
-    vendor_id = models.CharField(primary_key=True, max_length=10)
-    vendor_name = models.CharField(max_length=20, null=True)
-    vendor_address = models.CharField(max_length=100, null=True)
-    vendor_contact = models.BigIntegerField(null=True)
+    vendorID = models.CharField(primary_key=True, max_length=10)
+    vendorName = models.CharField(max_length=20, null=True)
+    vendorAddress = models.CharField(max_length=100, null=True)
+    vendorContact = models.BigIntegerField(null=True)
+
     def __str__(self):
         return str(self.vendor_id)
 
-class Item(models.Model):
-    item_id = models.CharField(primary_key=True, max_length=10)
-    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
-    item_name = models.CharField(max_length=40, null=True)
-    item_quantity = models.PositiveIntegerField(default=None, null=True)
-    item_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
-    item_description = models.TextField(blank=True, default=None, null=True)
+class QuotationItem(models.Model):
+    itemID = models.CharField(primary_key=True, max_length=10)
+    vendorID = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE,null=True)
+    itemName = models.CharField(max_length=40, null=True)
+    quantity = models.PositiveIntegerField(default=None, null=True)
+    itemPriceperUnit = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    qtyNeeded = models.PositiveIntegerField(default=None, null=True)
     
     def __str__(self):
         return str(self.item_id)
 
 
-class Product(models.Model):
-    product_id = models.CharField(primary_key=True, max_length=10)
-    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=40, null=True)
-    product_quantity = models.PositiveIntegerField(null=True)
-    product_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+class PurchaseOrderProduct(models.Model):
+    productID = models.CharField(primary_key=True, max_length=10)
+    vendorID = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
+    productName = models.CharField(max_length=40, null=True)
+    quantity = models.PositiveIntegerField(null=True)
+    productPriceperUnit = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    qtyProvided = models.PositiveIntegerField(null=True)
 
     def __str__(self):
         return str(self.product_id)
 
 class Quotation(models.Model):
-    quotation_id = models.CharField(primary_key=True, max_length=10)
-    staff_id = models.ForeignKey(Staff,default=None, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product,default=None, on_delete=models.CASCADE)
-    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=40)
-    product_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
-    total_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
-    valid_until = models.DateField()
-    quantity_provided = models.PositiveIntegerField(null=True)
-    quotation_status = models.CharField(max_length=20)
+    quotationID = models.CharField(primary_key=True, max_length=10)
+    staffID = models.ForeignKey(Staff,default=None, on_delete=models.CASCADE)
+    itemID = models.ForeignKey(QuotationItem,default=None, on_delete=models.CASCADE)
+    vendorID = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
+    totalPrice = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    validityDate = models.DateField()
+    qtyProvided = models.PositiveIntegerField(null=True)
+    quotationStatus = models.CharField(max_length=20)
 
     def __str__(self):
         return str(self.quotation_id)
 
 class PurchaseOrder(models.Model):
-    po_id = models.CharField(primary_key=True, max_length=10)
-    item_id = models.ForeignKey(Item,default=None, on_delete=models.CASCADE)
-    staff_id = models.ForeignKey(Staff,default=None, on_delete=models.CASCADE)
-    quotation_id = models.ForeignKey(Quotation,default=None, on_delete=models.CASCADE)
-    vendor_id = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
-    item_name = models.CharField(max_length=40)
-    quantity_provided = models.PositiveIntegerField()
-    item_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
-    total_price = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
-    quantity_needed = models.PositiveIntegerField()
-    po_status = models.CharField(max_length=20)
+    purchaseOrderID = models.CharField(primary_key=True, max_length=10)
+    staffID = models.ForeignKey(Staff,default=None, on_delete=models.CASCADE)
+    productID = models.ForeignKey(PurchaseOrderProduct,default=None, on_delete=models.CASCADE)
+    quotationID = models.ForeignKey(Quotation,default=None, on_delete=models.CASCADE)
+    vendorID = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
+    quantityNeeded = models.PositiveIntegerField()
+    qtyProvided = models.PositiveIntegerField()
+    totalPrice = models.DecimalField(default=None, null=True, max_digits=8, decimal_places=2)
+    poStatus = models.CharField(max_length=20)
 
     def __str__(self):
         return str(self.po_id)
