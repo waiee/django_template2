@@ -32,7 +32,6 @@ class QuotationItem(models.Model):
     def __str__(self):
         return str(self.item_id)
 
-
 class PurchaseOrderProduct(models.Model):
     productID = models.CharField(primary_key=True, max_length=10)
     vendorID = models.ForeignKey(Vendor,default=None, on_delete=models.CASCADE)
